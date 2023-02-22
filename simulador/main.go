@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 
+	kafka2 "code_delivery/simulator/kafka"
+
 	ckafka "github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"github.com/joho/godotenv"
 )
@@ -22,12 +24,8 @@ func main() {
 	go consumer.Consume()
 	for msg := range msgChan {
 		fmt.Println(string(msg.Value))
+		go kafka2.Produce(msg)
 
 	}
-	// producer := kafka.NewKafkaProducer()
-	// kafka.Publish("ola", "readtest", producer)
 
-	// for {
-	// 	_ = 1
-	// }
 }

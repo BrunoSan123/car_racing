@@ -40,10 +40,9 @@ func (k *KafkaConsumer) Consume() {
 	for {
 		msg, err := c.ReadMessage(-1)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 		}
 		if err == nil {
-			fmt.Println(string(msg.Value))
 			k.MsgChan <- msg
 		}
 
